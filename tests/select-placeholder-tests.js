@@ -45,7 +45,7 @@ describe('When a developer wants to see placeholder text on selectbox', function
 			$('#test-fixture').selectPlaceholder();
 			select
 				.find('option:first')
-				.selected().should.equal(true);
+				.is(':selected').should.equal(true);
 		});
 	});
 
@@ -63,7 +63,10 @@ describe('When a developer wants to see placeholder text on selectbox', function
 	var SelectWithPlaceholder = function(selectElement){
 		var select = $(selectElement),
 			placeholderText = select.attr('placeholder'),
-			option = $('<option>').val(placeholderText);
+			option = 
+				$('<option>')
+					.val(placeholderText)
+					.attr('selected', true);
 		select.prepend(option);
 	};
 })(jQuery);
