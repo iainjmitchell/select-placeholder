@@ -63,10 +63,15 @@ describe('When a developer wants to see placeholder text on selectbox', function
 	var SelectWithPlaceholder = function(selectElement){
 		var select = $(selectElement),
 			placeholderText = select.attr('placeholder'),
-			option = 
+			option = buildPlaceholderOption(placeholderText);
+		select.prepend(option);
+
+		function buildPlaceholderOption(placeholderText){
+			var option = 
 				$('<option>')
 					.val(placeholderText)
 					.attr('selected', true);
-		select.prepend(option);
+			return option;
+		}
 	};
 })(jQuery);
