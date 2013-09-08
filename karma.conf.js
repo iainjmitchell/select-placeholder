@@ -10,7 +10,9 @@ module.exports = function(config) {
         'src/*.js',
         'tests/*.js'
     ],
-    exclude: [],
+    exclude: [
+        'src/*.min.js'
+    ],
     reporters: ['progress'],
     port: 9876,
     colors: true,

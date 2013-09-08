@@ -8,10 +8,18 @@
 	};
 
 	var SelectWithPlaceholder = function(selectElement){
-		var select = $(selectElement),
+		var PLACEHOLDER_COLOR = 'rgb(176, 176, 176)',
+			select = $(selectElement),
+			originalColor = select.css('color'),
 			placeholderText = select.attr('placeholder'),
 			option = buildPlaceholderOption(placeholderText);
-		select.prepend(option);
+		
+		select
+			.css('color', PLACEHOLDER_COLOR)
+			.find('option')
+				.css('color', originalColor)
+				.end()
+			.prepend(option);
 
 		function buildPlaceholderOption(placeholderText){
 			var option = 	
