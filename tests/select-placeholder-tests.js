@@ -32,13 +32,19 @@ describe('When a developer wants to see placeholder text on selectbox', function
 
 });
 
-$.fn.selectPlaceholder = function(){
-	$(this)
-		.find('select[placeholder]')
-		.each(function(){
-			var select = $(this),
-				placeholderText = select.attr('placeholder'),
-				option = $('<option>').val(placeholderText);
-			select.append(option);
-		});
-};
+(function($, undefined){
+	$.fn.selectPlaceholder = function(){
+		$(this)
+			.find('select[placeholder]')
+			.each(function(){
+				new SelectWithPlaceholder(this);	
+			});
+	};
+
+	var SelectWithPlaceholder = function(selectElement){
+		var select = $(selectElement),
+			placeholderText = select.attr('placeholder'),
+			option = $('<option>').val(placeholderText);
+		select.append(option);
+	};
+})(jQuery);
