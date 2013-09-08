@@ -1,0 +1,36 @@
+<html>
+	<style type="text/css">
+		div {
+			padding: 5px;
+		}
+	</style>
+	<body>
+		<div>
+			<label>
+				No placeholder
+				<select>
+					<option>One</option>
+					<option>Two</option>
+					<option>Three</option>
+				</select>
+			</label>
+		</div>
+		<div>
+			<label>
+				Placeholder
+				<select placeholder="Choose something">
+					<option>One</option>
+					<option>Two</option>
+					<option>Three</option>
+				</select>
+			</label>
+		</div>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="src/select-placeholder.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('body').selectPlaceholder();
+			});
+		</script>
+	</body>
+</html>

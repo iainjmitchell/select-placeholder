@@ -7,6 +7,7 @@ module.exports = function(config) {
     frameworks: ['mocha', 'chai'],
     files: [
         'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+        'src/*.js',
         'tests/*.js'
     ],
     exclude: [],
