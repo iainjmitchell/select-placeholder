@@ -28,6 +28,15 @@ describe('When a developer wants to see placeholder text on selectbox', function
 				.length.should.equal(1);
 		});
 
+		it('Then the added placeholder option is first', function(){
+			var placeholderAttributeValue = 'Hello',
+				select = $('select');
+			select.attr('placeholder', placeholderAttributeValue);
+			$('#test-fixture').selectPlaceholder();
+			select
+				.find('option:first')
+				.val().should.equal(placeholderAttributeValue);
+		});
 	});
 
 });
@@ -45,6 +54,6 @@ describe('When a developer wants to see placeholder text on selectbox', function
 		var select = $(selectElement),
 			placeholderText = select.attr('placeholder'),
 			option = $('<option>').val(placeholderText);
-		select.append(option);
+		select.prepend(option);
 	};
 })(jQuery);
