@@ -1,0 +1,12 @@
+{
+  "name": "select-placeholder",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies" :{
+    "karma": "*",
+    "karma-mocha": "*",
+    "karma-chai" : "*",
+    "grunt-karma" : "*",
+    "grunt-contrib-jshint" : "*"
+  }
+}
