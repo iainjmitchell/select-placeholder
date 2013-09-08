@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.initConfig({
     karma: {
@@ -16,8 +17,15 @@ module.exports = function(grunt) {
 		    	jQuery: true
 		    },
 	    }
-  	}
+  	},
+  	uglify: {
+	    my_target: {
+		    files: {
+		        'src/select-placeholder.min.js': ['src/select-placeholder.js']
+		    }
+	    }
+	}
   });
 
-  grunt.registerTask('default', ['jshint', 'karma']);
+  grunt.registerTask('default', ['jshint', 'karma', 'uglify']);
 };
