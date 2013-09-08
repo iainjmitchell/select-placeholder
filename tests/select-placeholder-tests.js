@@ -18,16 +18,6 @@ describe('When a developer wants to see placeholder text on selectbox', function
 	});
 
 	describe('And has applied a placeholder attribute to the select', function(){
-		it('Then an option with a value of the placeholder attribute is added', function(){
-			var placeholderAttributeValue = 'Hello',
-				select = $('select');
-			select.attr('placeholder', placeholderAttributeValue);
-			$('#test-fixture').selectPlaceholder();
-			select
-				.find('option[value="'+ placeholderAttributeValue + '"]')
-				.length.should.equal(1);
-		});
-
 		it('Then the added placeholder option is first', function(){
 			var placeholderAttributeValue = 'Hello',
 				select = $('select');
@@ -35,18 +25,21 @@ describe('When a developer wants to see placeholder text on selectbox', function
 			$('#test-fixture').selectPlaceholder();
 			select
 				.find('option:first')
-				.val().should.equal(placeholderAttributeValue);
+				.text().should.equal(placeholderAttributeValue);
 		});
 
 		it('Then the added placeholder option is selected', function(){
-			var placeholderAttributeValue = 'Hello',
-				select = $('select');
-			select.attr('placeholder', placeholderAttributeValue);
+			var select = $('select');
+			select.attr('placeholder', 'aValue');
 			$('#test-fixture').selectPlaceholder();
 			select
 				.find('option:first')
 				.is(':selected').should.equal(true);
 		});
+
+		// it('Then the select text is greyed out', function(){
+		// 	var select = $('select')
+		// });
 	});
 
 });
@@ -67,9 +60,9 @@ describe('When a developer wants to see placeholder text on selectbox', function
 		select.prepend(option);
 
 		function buildPlaceholderOption(placeholderText){
-			var option = 
+			var option = 	
 				$('<option>')
-					.val(placeholderText)
+					.text(placeholderText)
 					.attr('selected', true);
 			return option;
 		}
