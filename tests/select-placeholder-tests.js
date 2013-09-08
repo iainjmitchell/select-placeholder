@@ -37,6 +37,16 @@ describe('When a developer wants to see placeholder text on selectbox', function
 				.find('option:first')
 				.val().should.equal(placeholderAttributeValue);
 		});
+
+		it('Then the added placeholder option is selected', function(){
+			var placeholderAttributeValue = 'Hello',
+				select = $('select');
+			select.attr('placeholder', placeholderAttributeValue);
+			$('#test-fixture').selectPlaceholder();
+			select
+				.find('option:first')
+				.selected().should.equal(true);
+		});
 	});
 
 });
