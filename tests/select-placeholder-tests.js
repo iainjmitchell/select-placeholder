@@ -8,7 +8,16 @@ describe('When a developer wants to see placeholder text on selectbox', function
 		$('#test-fixture').remove();
 	});
 
-	describe('And has applied a placeholder attribute to the select box', function(){
+	describe('And has NOT applied a placeholder attribute to the select', function(){
+		it('Then the select is NOT changed', function(){
+			var testFixture = $('#test-fixture');
+				selectHtml = testFixture.html();
+			testFixture.selectPlaceholder();
+			testFixture.html().should.equal(selectHtml);
+		});
+	});
+
+	describe('And has applied a placeholder attribute to the select', function(){
 		it('Then an option with a value of the placeholder attribute is added', function(){
 			var placeholderAttributeValue = 'Hello',
 				select = $('select');
@@ -25,7 +34,7 @@ describe('When a developer wants to see placeholder text on selectbox', function
 
 $.fn.selectPlaceholder = function(){
 	$(this)
-		.find('select')
+		.find('select[placeholder]')
 		.each(function(){
 			var select = $(this),
 				placeholderText = select.attr('placeholder'),
