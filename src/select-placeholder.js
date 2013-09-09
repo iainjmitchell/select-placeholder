@@ -15,6 +15,7 @@
 			option = buildPlaceholderOption(placeholderText);
 		
 		select
+			.bind('change', itemChanged)
 			.css('color', PLACEHOLDER_COLOR)
 			.find('option')
 				.css('color', originalColor)
@@ -24,9 +25,17 @@
 		function buildPlaceholderOption(placeholderText){
 			var option = 	
 				$('<option>')
+					.val('placeholder')
 					.text(placeholderText)
 					.attr('selected', true);
 			return option;
 		}
+
+		function itemChanged(){
+			$(this)
+				.css('color', originalColor)
+				.find('option[value="placeholder"]')
+					.css('color', PLACEHOLDER_COLOR);	
+		}		
 	};
 })(jQuery);

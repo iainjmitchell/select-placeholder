@@ -54,6 +54,32 @@ describe('When a developer wants to see placeholder text on selectbox', function
 				.find('option[value="2"]')
 				.css('color').should.equal(defaultColor);
 		});
+
+		describe('And when user selects an option', function(){
+			it('Then select text returns to original color', function(){
+				var defaultColor = 'rgb(0, 0, 0)',
+				select = $('select');
+				select.attr('placeholder', 'aValue');
+				$('#test-fixture').selectPlaceholder();
+				select
+        			.val('2')
+        			.trigger('change');
+        		select.css('color').should.equal(defaultColor);	
+			});
+
+			it('Then placeholder option remains greyed out', function(){
+				var placeholderColor = 'rgb(176, 176, 176)',
+				select = $('select');
+				select.attr('placeholder', 'aValue');
+				$('#test-fixture').selectPlaceholder();
+				select
+        			.val('2')
+        			.trigger('change');
+        		select
+					.find('option:first')
+        			.css('color').should.equal(placeholderColor);	
+			});
+		});
 	});
 
 });
