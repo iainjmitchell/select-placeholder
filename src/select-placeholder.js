@@ -12,7 +12,8 @@
 			select = $(selectElement),
 			originalColor = select.css('color'),
 			placeholderText = select.attr('placeholder'),
-			option = buildPlaceholderOption(placeholderText);
+			option = buildPlaceholderOption(placeholderText),
+			lastSelectedValue;
 		
 		select
 			.bind('change', itemChanged)
@@ -28,14 +29,26 @@
 					.val('placeholder')
 					.text(placeholderText)
 					.attr('selected', true);
+			lastSelectedValue = option.val();
 			return option;
 		}
 
 		function itemChanged(){
-			$(this)
+			if (select.val() !== 'placeholder'){
+				lastSelectedValue = select.val();
+				lookEnabled();
+			}
+			else {
+				console.log('placeholder');
+				select.val(lastSelectedValue);
+			}
+		}	
+
+		function lookEnabled(){
+			select
 				.css('color', originalColor)
 				.find('option[value="placeholder"]')
-					.css('color', PLACEHOLDER_COLOR);	
-		}		
+					.css('color', PLACEHOLDER_COLOR);
+		}	
 	};
 })(jQuery);

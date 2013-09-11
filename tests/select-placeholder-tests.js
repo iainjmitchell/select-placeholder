@@ -58,7 +58,7 @@ describe('When a developer wants to see placeholder text on selectbox', function
 		describe('And when user selects an option', function(){
 			it('Then select text returns to original color', function(){
 				var defaultColor = 'rgb(0, 0, 0)',
-				select = $('select');
+					select = $('select');
 				select.attr('placeholder', 'aValue');
 				$('#test-fixture').selectPlaceholder();
 				select
@@ -69,7 +69,7 @@ describe('When a developer wants to see placeholder text on selectbox', function
 
 			it('Then placeholder option remains greyed out', function(){
 				var placeholderColor = 'rgb(176, 176, 176)',
-				select = $('select');
+					select = $('select');
 				select.attr('placeholder', 'aValue');
 				$('#test-fixture').selectPlaceholder();
 				select
@@ -79,7 +79,23 @@ describe('When a developer wants to see placeholder text on selectbox', function
 					.find('option:first')
         			.css('color').should.equal(placeholderColor);	
 			});
+
+			describe.only('And when user tries to select the placeholder option', function(){
+				it('Then the value does not change', function(){
+					var select = $('select');
+					select.attr('placeholder', 'aValue');
+					$('#test-fixture').selectPlaceholder();
+					select
+        				.val('2')
+        				.trigger('change')
+        				.val('placeholder')
+        				.trigger('change');
+					 $('select').val().should.equal('2');
+				});
+			});
 		});
+
+
 	});
 
 });
