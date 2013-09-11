@@ -9,10 +9,11 @@
 
 	var SelectWithPlaceholder = function(selectElement){
 		var PLACEHOLDER_COLOR = 'rgb(176, 176, 176)',
+			PLACEHOLDER_VALUE = 'placeholder',
 			select = $(selectElement),
 			originalColor = select.css('color'),
 			placeholderText = select.attr('placeholder'),
-			option = buildPlaceholderOption(placeholderText),
+			placeholderOptionBuilder = new PlaceholderOptionBuilder(PLACEHOLDER_VALUE),
 			lastSelectedValue;
 		
 		select
@@ -21,34 +22,35 @@
 			.find('option')
 				.css('color', originalColor)
 				.end()
-			.prepend(option);
+			.prepend(placeholderOptionBuilder.build(placeholderText));
 
-		function buildPlaceholderOption(placeholderText){
+		function itemChanged(){
+			if (select.val() !== PLACEHOLDER_VALUE){
+				lastSelectedValue = select.val();
+				lookLikeOptionSelected();
+			}
+			else {
+				select.val(lastSelectedValue);
+			}
+		}	
+
+		function lookLikeOptionSelected(){
+			select
+				.css('color', originalColor)
+				.find('option[value="' + PLACEHOLDER_VALUE + '"]')
+					.css('color', PLACEHOLDER_COLOR);
+		}
+	};
+
+	var PlaceholderOptionBuilder = function(placeholderValue){
+		this.build = function(placeholderText){
 			var option = 	
 				$('<option>')
-					.val('placeholder')
+					.val(placeholderValue)
 					.text(placeholderText)
 					.attr('selected', true);
 			lastSelectedValue = option.val();
 			return option;
 		}
-
-		function itemChanged(){
-			if (select.val() !== 'placeholder'){
-				lastSelectedValue = select.val();
-				lookEnabled();
-			}
-			else {
-				console.log('placeholder');
-				select.val(lastSelectedValue);
-			}
-		}	
-
-		function lookEnabled(){
-			select
-				.css('color', originalColor)
-				.find('option[value="placeholder"]')
-					.css('color', PLACEHOLDER_COLOR);
-		}	
 	};
 })(jQuery);
