@@ -11,7 +11,9 @@ Dependencies
 Usage
 -----
 
-In your HTML add a placeholder attribute to a select, the value will be the text displayed.
+Add a reference to jQuery and selectPlaceholder scripts into the HTML.
+
+Within the HTML add a placeholder attribute to a select, the value will be the text displayed.
 
 ``` html
 <select placeholder='Click something..'>
@@ -25,6 +27,8 @@ Add into your javascript, the following...
 ``` js
 $('select').selectPlaceholder();
 ```
+
+That's it!
 
 See demo.html for a working example.
 
